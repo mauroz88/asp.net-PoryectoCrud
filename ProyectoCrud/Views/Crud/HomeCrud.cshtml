@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+    
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">        
+            alert("@ViewBag.Message");
+    </script>
+    <div>
+        
+    </div>
+    <div class="container">
+        <section class="row">
+
+            <div class="col-sm-8">
+                <h4 class="page-header">Default Implementation</h4>
+                <form role="form" action="@Url.Action("Guardar","Crud")" method="post">
+                    <div class="form-group float-label-control">
+                        <label for="">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="form-group float-label-control">
+                        <label for="">Telefono</label>
+                        <input type="text" name="Telefono" class="form-control" placeholder="Telefono">
+                    </div>
+                    <div class="form-group float-label-control">
+                        <label for="">email</label>
+                        <input type="email" name="Correo" class="form-control" placeholder="email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+
+        </section>
+
+        <section onload="fun()">
+
+            <h1>Lista de Contactos</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        
+                    <tr>
+                        <th scope="row">@item.IdContacto </th>
+                        <td>@item.Nombre</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.Correo</td>
+                        <td><button class="btn btn-success" style="margin-bottom: 20px; padding: 5px;">Editar</button></td>
+                        <td><form action="@Url.Action("Eliminar","Crud")/@item.IdContacto" method="post"><button class="btn btn-danger " type="submit" style="margin-left : 20px; padding: 5px;">Eliminar</button></form></td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </section>
+
+    </div>
+</body>
+</html>
